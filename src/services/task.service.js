@@ -1,7 +1,7 @@
 import axios from "axios";
 import { ITaskService } from "./interfaces/ITaskService";
 
-const API_URL = import.meta.env.VITE_API_URL ||"http://localhost:5000/api/tasks";
+const API_URL = `${import.meta.env.VITE_API_URL}/api/tasks` || "http://localhost:5000/api/tasks";
 
 export class TaskService extends ITaskService {
   async getTasks(status) {
