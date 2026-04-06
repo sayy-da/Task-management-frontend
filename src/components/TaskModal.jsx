@@ -32,15 +32,16 @@ const TaskModal = ({ isOpen, onClose, onSubmit, initialData }) => {
       <div className="modal-content fade-in" onClick={e => e.stopPropagation()}>
         <div className="modal-header">
           <h2 className="modal-title">
-            {initialData ? "Edit Task" : "New Task"}
+            {initialData ? "Edit Task" : "Create Task"}
           </h2>
-          <button className="btn-icon" onClick={onClose}>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <button className="btn-icon" onClick={onClose} aria-label="Close">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <line x1="18" y1="6" x2="6" y2="18"></line>
               <line x1="6" y1="6" x2="18" y2="18"></line>
             </svg>
           </button>
         </div>
+        
         <form onSubmit={handleSubmit} className="task-form">
           <div className="form-group">
             <label>Title</label>
@@ -50,9 +51,9 @@ const TaskModal = ({ isOpen, onClose, onSubmit, initialData }) => {
               className="form-input"
               value={formData.title}
               onChange={e => setFormData({ ...formData, title: e.target.value })}
-              placeholder="What needs to be done?"
             />
           </div>
+
           <div className="form-group">
             <label>Description</label>
             <textarea
@@ -60,13 +61,14 @@ const TaskModal = ({ isOpen, onClose, onSubmit, initialData }) => {
               rows="3"
               value={formData.description}
               onChange={e => setFormData({ ...formData, description: e.target.value })}
-              placeholder="Add some details..."
+              style={{ resize: 'none' }}
             />
           </div>
+
           <div className="form-group">
             <label>Status</label>
             <select
-              className="form-input select-status"
+              className="form-input"
               value={formData.status}
               onChange={e => setFormData({ ...formData, status: e.target.value })}
             >
@@ -75,12 +77,13 @@ const TaskModal = ({ isOpen, onClose, onSubmit, initialData }) => {
               <option value="Completed">Completed</option>
             </select>
           </div>
+
           <div className="modal-actions">
             <button type="button" className="btn btn-outline" onClick={onClose}>
               Cancel
             </button>
             <button type="submit" className="btn btn-primary">
-              {initialData ? "Update Task" : "Create Task"}
+              {initialData ? "Update" : "Create"}
             </button>
           </div>
         </form>
